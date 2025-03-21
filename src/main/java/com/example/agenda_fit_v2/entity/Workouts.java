@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -31,7 +33,9 @@ public class Workouts implements Serializable {
     @Column(name = "hours")
     private double hours;
 
-    // private ArrayList<Exercises> exercises;
+    @OneToMany(mappedBy = "workout")
+    private List<WorkoutsExercises> workoutExercises;
+
     @Column(name = "type")
     private int tipo;
 

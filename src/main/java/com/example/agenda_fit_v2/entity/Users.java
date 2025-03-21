@@ -42,7 +42,15 @@ public class Users implements Serializable {
     private List<Workouts> workouts;
 
     public Users() {
+    }
 
+    public Users(String login, String password, String email, Date birth_date, double height, double weight) {
+        this.login = login;
+        this.password = password;
+        this.email = email;
+        this.birth_date = birth_date;
+        this.height = height;
+        this.weight = weight;
     }
 
     public Users(String login, String password) {
