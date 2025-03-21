@@ -1,7 +1,6 @@
 package com.example.agenda_fit_v2.entity;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 public enum ExerciseType {

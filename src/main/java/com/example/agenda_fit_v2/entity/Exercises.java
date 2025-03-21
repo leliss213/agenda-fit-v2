@@ -30,4 +30,9 @@ public class Exercises {
         this.name = name;
         this.type = type;
     }
+
+    public Exercises() {
+    }
+
+
 }
