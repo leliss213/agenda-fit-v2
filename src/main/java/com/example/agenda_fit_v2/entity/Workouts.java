@@ -39,6 +39,10 @@ public class Workouts implements Serializable {
     @Column(name = "type")
     private int tipo;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Users user;
+
     public Workouts() {
 
     }
