@@ -13,6 +13,7 @@ import java.util.List;
 public class Exercises {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_exercise")
     private Long id_exercise;
 
