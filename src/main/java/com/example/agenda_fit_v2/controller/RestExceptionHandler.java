@@ -1,5 +1,6 @@
 package com.example.agenda_fit_v2.controller;
 
+import com.example.agenda_fit_v2.exception.AgendaFitException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -8,6 +9,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class RestExceptionHandler {
+
+    @ExceptionHandler(AgendaFitException.class)
+    public ProblemDetail handleAgendaFitException(AgendaFitException e) {
+        return e.toProblemDetail();
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ProblemDetail handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {

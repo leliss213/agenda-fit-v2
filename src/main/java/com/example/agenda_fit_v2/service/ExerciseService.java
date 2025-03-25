@@ -2,9 +2,12 @@ package com.example.agenda_fit_v2.service;
 
 import com.example.agenda_fit_v2.controller.dto.ExerciseDTO;
 import com.example.agenda_fit_v2.entity.Exercises;
+import com.example.agenda_fit_v2.exception.NotFoundExerciseException;
 import com.example.agenda_fit_v2.repository.ExerciseRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class ExerciseService {
@@ -18,5 +21,13 @@ public class ExerciseService {
     @Transactional
     public Exercises createExercise(ExerciseDTO dtoExercise) {
         return exerciseRepository.save(dtoExercise.exercises());
+    }
+
+    @Transactional
+    public void deleteExercise(Long id) {
+        if (!exerciseRepository.existsById(id)) {
+            throw new NotFoundExerciseException();
+        }
+        exerciseRepository.deleteById(id);
     }
 }

@@ -35,5 +35,4 @@ public class Exercises {
     public Exercises() {
     }
 
-
 }

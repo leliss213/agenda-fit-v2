@@ -6,12 +6,13 @@ import com.example.agenda_fit_v2.service.ExerciseService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Slf4j
 @RestController
+@RequestMapping("/api/exercises")
 public class ExerciseController {
 
     private final ExerciseService exerciseService;
@@ -20,10 +21,16 @@ public class ExerciseController {
         this.exerciseService = exerciseService;
     }
 
-    @PostMapping("/exercises")
+    @PostMapping()
     public ResponseEntity<Exercises> addExercise(@RequestBody @Valid ExerciseDTO exercisesDto) {
         var exercise = exerciseService.createExercise(exercisesDto);
 
         return ResponseEntity.ok(exercise);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteExercise(@PathVariable Long id) {
+        exerciseService.deleteExercise(id);
+        return ResponseEntity.noContent().build();
     }
 }
