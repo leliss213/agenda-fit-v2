@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,7 +30,7 @@ public class Users implements Serializable {
     private String email;
 
     @Column(name = "birth_date")
-    private Date birth_date;
+    private LocalDate birth_date;
 
     @Column(name = "height")
     private double height;
@@ -44,7 +44,7 @@ public class Users implements Serializable {
     public Users() {
     }
 
-    public Users(String login, String password, String email, Date birth_date, double height, double weight) {
+    public Users(String login, String password, String email, LocalDate birth_date, double height, double weight) {
         this.login = login;
         this.password = password;
         this.email = email;
@@ -57,4 +57,6 @@ public class Users implements Serializable {
         this.login = login;
         this.password = password;
     }
+
+
 }

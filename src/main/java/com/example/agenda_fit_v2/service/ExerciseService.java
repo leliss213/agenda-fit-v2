@@ -5,9 +5,7 @@ import com.example.agenda_fit_v2.entity.Exercises;
 import com.example.agenda_fit_v2.exception.NotFoundExerciseException;
 import com.example.agenda_fit_v2.repository.ExerciseRepository;
 import jakarta.transaction.Transactional;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class ExerciseService {
