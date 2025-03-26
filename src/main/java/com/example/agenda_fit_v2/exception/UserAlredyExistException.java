@@ -10,7 +10,7 @@ public class UserAlredyExistException extends AgendaFitException {
         var pd = ProblemDetail.forStatus(HttpStatus.CONFLICT);
 
         pd.setTitle("User Already Exist");
-        pd.setDetail("This mail or login already exists");
+        pd.setDetail("This email or login already exists");
 
         return pd;
     }
