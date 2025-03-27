@@ -1,5 +1,7 @@
 package com.example.agenda_fit_v2.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +21,8 @@ public class WorkoutsExercises implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_workout")
+    @JsonIgnore
+    @JsonBackReference
     private Workouts workout;
 
     @ManyToOne

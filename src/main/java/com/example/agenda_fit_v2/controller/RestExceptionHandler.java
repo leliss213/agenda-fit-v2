@@ -19,6 +19,12 @@ public class RestExceptionHandler {
         return e.toProblemDetail();
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    public ProblemDetail handleRuntimeException(RuntimeException e) {
+        log.error(e.getMessage(), e);
+        return ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ProblemDetail handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
         var errors = ex.getBindingResult().getFieldErrors()
@@ -32,12 +38,6 @@ public class RestExceptionHandler {
         pd.setProperty("InvalidParam", errors);
 
         return pd;
-    }
-
-    @ExceptionHandler(RuntimeException.class)
-    public ProblemDetail handleRuntimeException(RuntimeException e) {
-        log.error(e.getMessage(), e);
-        return ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)

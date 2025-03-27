@@ -5,6 +5,7 @@ import com.example.agenda_fit_v2.entity.Users;
 import com.example.agenda_fit_v2.service.UserService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

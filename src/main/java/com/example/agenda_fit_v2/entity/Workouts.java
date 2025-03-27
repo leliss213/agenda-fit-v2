@@ -1,12 +1,13 @@
 package com.example.agenda_fit_v2.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,16 +29,18 @@ public class Workouts implements Serializable {
     private String description;
 
     @Column(name = "date")
-    private Date date;
+    private LocalDate date;
 
     @Column(name = "hours")
     private double hours;
 
-    @OneToMany(mappedBy = "workout")
+    @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    @JsonIgnoreProperties("workout")
     private List<WorkoutsExercises> workoutExercises;
 
     @Column(name = "type")
-    private int tipo;
+    private int type;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -45,5 +48,15 @@ public class Workouts implements Serializable {
 
     public Workouts() {
 
+    }
+
+    public Workouts(String title, String description, LocalDate date, double hours, List<WorkoutsExercises> workoutExercises, int type, Users user) {
+        this.title = title;
+        this.description = description;
+        this.date = date;
+        this.hours = hours;
+        this.workoutExercises = workoutExercises;
+        this.type = type;
+        this.user = user;
     }
 }

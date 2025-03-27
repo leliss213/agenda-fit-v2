@@ -7,9 +7,6 @@ import com.example.agenda_fit_v2.exception.UserDoesNotExistException;
 import com.example.agenda_fit_v2.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 @Service
