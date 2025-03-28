@@ -1,9 +1,7 @@
 package com.example.agenda_fit_v2.exception;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
-
 import java.util.UUID;
 
 public class UserDoesNotExistException extends AgendaFitException {

@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,7 +37,7 @@ public class Workouts implements Serializable {
     @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     @JsonIgnoreProperties("workout")
-    private List<WorkoutsExercises> workoutExercises;
+    private List<WorkoutsExercises> workoutExercises = new ArrayList<>();
 
     @Column(name = "type")
     private int type;

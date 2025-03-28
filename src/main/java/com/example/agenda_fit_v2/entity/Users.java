@@ -3,7 +3,6 @@ package com.example.agenda_fit_v2.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;

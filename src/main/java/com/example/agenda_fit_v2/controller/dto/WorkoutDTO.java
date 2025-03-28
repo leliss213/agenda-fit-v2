@@ -1,6 +1,5 @@
 package com.example.agenda_fit_v2.controller.dto;
 
-import com.example.agenda_fit_v2.entity.WorkoutsExercises;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;

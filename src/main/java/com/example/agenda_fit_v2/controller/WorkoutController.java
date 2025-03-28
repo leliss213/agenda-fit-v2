@@ -6,12 +6,9 @@ import com.example.agenda_fit_v2.service.WorkoutService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import java.net.URI;
+import java.util.UUID;
 
 @Slf4j
 @RestController
@@ -28,7 +25,13 @@ public class WorkoutController {
     public ResponseEntity<WorkoutResponseDTO> addWorkout(@RequestBody @Valid WorkoutDTO workoutDTO) {
 
         WorkoutResponseDTO workout = workoutService.createWorkout(workoutDTO);
+        return ResponseEntity.created(URI.create("/workouts/" + workout.id_workout())).body(workout);
+    }
 
-        return ResponseEntity.created(URI.create("/workouts/" + workout.id())).body(workout);
+    @PatchMapping("/{id_workout}")
+    public ResponseEntity<WorkoutResponseDTO> updateWorkout(@RequestBody @Valid WorkoutDTO workoutDTO, @PathVariable UUID id_workout) {
+
+        WorkoutResponseDTO updateWorkout = workoutService.updateWorkout(workoutDTO, id_workout);
+        return ResponseEntity.ok(updateWorkout);
     }
 }
