@@ -16,7 +16,4 @@ public record WorkoutDTO(@NotBlank String title,
                          @NotNull UUID userId
                          ) {
 
-//    public Workouts workout() {
-//        return new Workouts(title, description, date, hours, workoutsExercises, tipo, userId);
-//    }
 }
