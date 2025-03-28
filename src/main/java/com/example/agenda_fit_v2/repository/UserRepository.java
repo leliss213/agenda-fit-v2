@@ -12,6 +12,6 @@ import java.util.UUID;
 public interface UserRepository extends JpaRepository<Users, UUID> {
     Optional<Users> findByLoginOrEmail(String login, String email);
 
-    @Query("SELECT a FROM Users a WHERE (a.login = :login OR a.email = :email) AND a.id_user <> :userId ")
+    @Query("SELECT a FROM Users a WHERE (a.login = :login OR a.email = :email) AND a.iduser <> :userId ")
     Optional<Users> findByLoginOrEmailExcludingId(String login, String email, UUID userId);
 }

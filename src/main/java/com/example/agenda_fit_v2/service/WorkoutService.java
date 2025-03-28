@@ -84,7 +84,7 @@ public class WorkoutService {
                         we.getSets()))
                 .collect(Collectors.toList());
 
-        return new WorkoutResponseDTO(workout.getId_workout(), workout.getTitle(), workout.getDescription(), workoutsExercisesResponseList, user.getId_user());
+        return new WorkoutResponseDTO(workout.getId_workout(), workout.getTitle(), workout.getDescription(), workoutsExercisesResponseList, user.getIduser());
     }
 
     @Transactional
@@ -132,6 +132,31 @@ public class WorkoutService {
 
         workout.getWorkoutExercises().addAll(workoutsExercisesList);
         workoutRepository.save(workout);
-        return new WorkoutResponseDTO(id_workout, workout.getTitle(), workout.getDescription(), workoutsExercisesResponseDTO, workout.getUser().getId_user());
+        return new WorkoutResponseDTO(id_workout, workout.getTitle(), workout.getDescription(), workoutsExercisesResponseDTO, workout.getUser().getIduser());
+    }
+
+    public List<WorkoutResponseDTO> getWorkoutsByUser(UUID id_user) {
+        List<Workouts> workoutsList = workoutRepository.findByUser_Iduser(id_user);
+        List<WorkoutResponseDTO> workoutResponseDTOList = new ArrayList<>();
+
+        return workoutsList.stream().map(workout -> new WorkoutResponseDTO<>(
+                workout.getId_workout(),
+                workout.getTitle(),
+                workout.getDescription(),
+                workout.getWorkoutExercises().stream()
+                        .map(this::convertToWorkoutsExercisesResponseDTO)
+                        .collect(Collectors.toList()),
+                workout.getUser().getIduser()
+        )).collect(Collectors.toList());
+
+    }
+
+    private WorkoutsExercisesResponseDTO convertToWorkoutsExercisesResponseDTO(WorkoutsExercises workoutsExercises) {
+        return new WorkoutsExercisesResponseDTO(
+                workoutsExercises.getExercise().getId_exercise(),
+                workoutsExercises.getWeight(),
+                workoutsExercises.getRepetitions(),
+                workoutsExercises.getSets()
+        );
     }
 }

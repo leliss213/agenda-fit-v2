@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -33,5 +34,10 @@ public class WorkoutController {
 
         WorkoutResponseDTO updateWorkout = workoutService.updateWorkout(workoutDTO, id_workout);
         return ResponseEntity.ok(updateWorkout);
+    }
+
+    @GetMapping("/user/{id_user}")
+    public ResponseEntity<List<WorkoutResponseDTO>> getWorkoutsByUser(@PathVariable UUID id_user) {
+        return ResponseEntity.ok(workoutService.getWorkoutsByUser(id_user));
     }
 }
