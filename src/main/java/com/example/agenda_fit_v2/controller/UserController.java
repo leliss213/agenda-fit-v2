@@ -1,6 +1,8 @@
 package com.example.agenda_fit_v2.controller;
 
 import com.example.agenda_fit_v2.controller.dto.UserDTO;
+import com.example.agenda_fit_v2.controller.dto.UserLoginRequestDTO;
+import com.example.agenda_fit_v2.controller.dto.UserLoginResponseDTO;
 import com.example.agenda_fit_v2.entity.Users;
 import com.example.agenda_fit_v2.service.UserService;
 import jakarta.validation.Valid;
@@ -30,5 +32,11 @@ public class UserController {
     public ResponseEntity<Users> updateUser(@PathVariable UUID id, @RequestBody @Valid UserDTO userDTO) {
         var User = userService.updateUser(id, userDTO);
         return ResponseEntity.ok(User);
+    }
+
+    @PostMapping("/auth/login")
+    public ResponseEntity<UserLoginResponseDTO> login(@RequestBody @Valid UserLoginRequestDTO requestDTO) {
+        String token = '';
+        return ResponseEntity.ok(new UserLoginResponseDTO(token));
     }
 }
