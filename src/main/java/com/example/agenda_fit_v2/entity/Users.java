@@ -37,25 +37,34 @@ public class Users implements Serializable {
     @Column(name = "weight")
     private double weight;
 
+    @Column(name = "token")
+    private String token;
+
     @OneToMany(mappedBy = "user")
     private List<Workouts> workouts;
 
     public Users() {
     }
 
-    public Users(String login, String password, String email, LocalDate birth_date, double height, double weight) {
+    public Users(String login,
+                 String password,
+                 String email,
+                 LocalDate birth_date,
+                 double height,
+                 double weight,
+                 String token) {
         this.login = login;
         this.password = password;
         this.email = email;
         this.birth_date = birth_date;
         this.height = height;
         this.weight = weight;
+        this.token = token;
     }
 
     public Users(String login, String password) {
         this.login = login;
         this.password = password;
     }
-
 
 }

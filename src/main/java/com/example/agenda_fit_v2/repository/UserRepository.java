@@ -15,5 +15,5 @@ public interface UserRepository extends JpaRepository<Users, UUID> {
     @Query("SELECT a FROM Users a WHERE (a.login = :login OR a.email = :email) AND a.iduser <> :userId ")
     Optional<Users> findByLoginOrEmailExcludingId(String login, String email, UUID userId);
 
-    Optional<Users> findByLogin(String login);
+    Optional<Users> findUserByLogin(String login);
 }
