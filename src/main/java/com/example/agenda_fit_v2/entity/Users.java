@@ -62,6 +62,20 @@ public class Users implements Serializable {
         this.token = token;
     }
 
+    public Users(String login,
+                 String password,
+                 String email,
+                 LocalDate birth_date,
+                 double height,
+                 double weight) {
+        this.login = login;
+        this.password = password;
+        this.email = email;
+        this.birth_date = birth_date;
+        this.height = height;
+        this.weight = weight;
+    }
+
     public Users(String login, String password) {
         this.login = login;
         this.password = password;
